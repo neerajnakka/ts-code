@@ -47,3 +47,24 @@ let employee2 = {
         console.log(date);
     },
 };
+let employee3 = { id: 1, name: 'neeraj', retire: (date) => { } };
+let id5 = 1;
+id5 = 'hello';
+function kgToLbs(weight) {
+    if (typeof weight === 'number') {
+        return weight * 2.2;
+    }
+    else {
+        return parseInt(weight) * 2.2;
+    }
+}
+kgToLbs(10);
+kgToLbs('10kg');
+let textBox = {
+    drag: () => { },
+    resize: () => { },
+};
+let company = { id: 1, name: 'neeraj', project: 'typescript' };
+let l1 = 50;
+let l2 = 100;
+let l3 = 'neeraj';
