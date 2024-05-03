@@ -9,6 +9,8 @@ z2 = 'string';
 z2 = true;
 //any is a special data type in ts that can be replaced with any other data type value
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //Arrays in ts
 //in js let num=[1,2,3,'no'] as it is dynamic array it will allow any type of data
 //In ts we define types to arrays by using :number[] or :string[]
@@ -19,7 +21,10 @@ let strArr: string[] = ['hello', 'world'];
 let anyArr = [];
 anyArr.push(1);
 anyArr.push('hello'); //it can take any data type values
+//you can also do union in arrays like
+let numuStr: (string | number)[] = ['hello', 1, 'no', 2];
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Tupes in ts : a fixed size arrray with different types
 let numStr: [number, string] = [1, 'hello'];
 //the postions cannot be interchanged and also not exceed the specified data types number and we cannot add or remove more or less than the specified number of data types
@@ -30,6 +35,7 @@ let numStr3: [string | number, number] = ['hello', 1]; //we can use | to specify
 let nums: string | number = numStr3[0];
 let numn: number = numStr3[1];
 
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Enums in ts : used to define a set of named constants
 //we can assign values to enums in ts by using enum keyword
 //enums make it easier to work with a group of related values that are known at compile time.
@@ -49,6 +55,8 @@ let num1: Nums = Nums.One;
 let size1: Size = Size.Small;
 console.log(size1, num1); //Accessing by assigning enum type to a variable
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //functions in ts
 //typescript will infer the return type of the function if not specified in below the type of function is number becuase return type is a number
 //parameters in ts are also inferred if not specified but parameter type must be specified
@@ -63,6 +71,12 @@ function calculateTax1(income: number = 2022): number {
 calculateTax(10); //if passed more or less ts throws error but in js it does not care even if we pass more or less
 //useful config for  functions
 // noUnusedLocals: true,noImplicitReturns:true, noUnusedParameters:true
+
+//Arrow functions
+let arrFun = (x: number, y: string): string => {
+  return x + y;
+};
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Objects in ts
 //For objects we pass object as a type and assign types to the keys in the object
@@ -83,6 +97,8 @@ let employee2: { id: number; name: string; retire: (date: Date) => void } = {
     console.log(date);
   },
 };
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //type alias in ts: it is used to create a reusable type and assign it to a variable or an object or an array or a function and use it in the code as a type alias
 //type makes it easy to work with objects or arrays
@@ -143,3 +159,34 @@ let l1: 50 = 50; // it says that only 50 literal should be assigned to l1
 let l2: 50 | 100 = 100; //here l2 can be 50 or 100
 type name = 'neeraj' | 'chandra'; //literal
 let l3: name = 'neeraj'; // here name can be only neeraj or chandra
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Interface in ts: they are used to define structure of an object
+//we create interface similar to an object type alias like assigning object to a variable ex: type x=10;
+//Javascript has no concept of interface so we use interface in ts
+interface Person {
+  age: number;
+  name: string;
+}
+// for type alias we do: type Person = { age: number; name: string };
+let personObj: Person = { name: 'neeraj', age: 22 };
+
+//two interfaces can also be combined together by using extends keyword while type alias as & for intersection
+interface Manager1 extends Person {
+  project: string;
+}
+
+//you can also use type and interface
+type Manager2 = Manager1 & {
+  salary: number;
+};
+
+let companyInt: Manager2 = {
+  name: 'neeraj',
+  age: 22,
+  project: 'typescript',
+  salary: 20000,
+};
+//generics in ts
+//generics are used to create reusable components with different data types

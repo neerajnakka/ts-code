@@ -12,6 +12,7 @@ let strArr = ['hello', 'world'];
 let anyArr = [];
 anyArr.push(1);
 anyArr.push('hello');
+let numuStr = ['hello', 1, 'no', 2];
 let numStr = [1, 'hello'];
 let numStr1 = ['hello', 1, true];
 let numStr3 = ['hello', 1];
@@ -34,6 +35,9 @@ function calculateTax1(income = 2022) {
     return 0;
 }
 calculateTax(10);
+let arrFun = (x, y) => {
+    return x + y;
+};
 let employee = { id: 1, name: 'neeraj' };
 employee.id = 2;
 let employee1 = {
@@ -68,3 +72,10 @@ let company = { id: 1, name: 'neeraj', project: 'typescript' };
 let l1 = 50;
 let l2 = 100;
 let l3 = 'neeraj';
+let personObj = { name: 'neeraj', age: 22 };
+let companyInt = {
+    name: 'neeraj',
+    age: 22,
+    project: 'typescript',
+    salary: 20000,
+};
