@@ -1,0 +1,63 @@
+ts-node : first install the package locally or globally : npm i -g ts-node
+	=> ts-node makes these two steps into one step : tsc index.ts and node index.js
+	=> ts-node index.ts it directly compiles and run and internally makes tsc and node commands is used 
+   
+    
+React-types :
+1) creating components:
+=> React.FC : it is a type used to say that it is a react functional component type
+			  it should only written jsx and it is not mandatory to explicitly to say as ts infers the type itself
+	ex:  const funcCom : React.FC =()=>{
+        return (<div></div>);
+    }
+
+2) creating props and assigning types
+=> you can assign props in the object form () : const funcCom=(props : {name:String,id:number})=>{} but it will make it complex 
+=> so use type or interface for assigning types to props
+
+		ex: 	 interface PropType{
+				name:string,
+				id:number,
+				onClick?: ()=>void
+				}
+                
+		 const funcCom=(props: PropType)=>{return <> {props.name, props.id, props.Onclick}</>}
+                                           
+=> By using React.FC you can pass the proptype in generic and React.FC will infer it as proptype and there is no need of mentioning it in ()   
+		ex:  const funcCom: React.FC < PropType > =(props)=>{return <> {props.name, props.id}</>}
+=> In react-ts what all mentioned in prop types that all are need to be passed from parent app() if not it thros error to avoid that  we can use
+   optional (?) which makes it optional to use 
+             
+       
+3) types for hooks : we use <> to say the type to hooks
+  => there are two types one is implicit and explicity In below if we dont mention number then typescript assigns the type implicitly as we passed number                                                           
+ => ex: const [value,setValue]= useState<number>(1); now the type of hook is number
+ => ex:  interface Book{id:string,author:string}   const [book, setBook] = useState <Book >({});  now the type is object
+ 
+ => while working with context hook you need to create a interface for props to get children which is of React.ReactNode type
+                                           type ContexthookProviderProps ={
+                                               children : React.ReactNode
+                                           }
+                                           
+4) types for Forms :
+   => When handling forms you have to mention types for events (e) what type of event it is and what it is handling 
+   => In below we are mentioning types to event as it is onChangeEvent it is React.ChangeEventType and as it input element so it takes <HTMLInputElement>   => it it is onclick then it will be React.ClickEvent                                    
+                const FormCom =()=>{
+                                    const handleChange =(e : React.ChangeEvent <HTMLInputElement>)=>{ setValue()}
+                                    const handleSubmit =( e: React.FormEvent <HTMLFormElement>)=>{}
+                   			 return (
+                                 <div>
+                                    <form onSubmit ={handleSubmit}>
+                                     <input type= "text" onChange ={handleChange}/>
+                                      </form>                       
+                                  </div>)
+                			}       
+                                          
+5)  type for css styles
+=> we use React.CSSProperties as type for css 
+type funcComStyleProps={
+    
+    styleProps: React.CSSProperties
+}
+app.tsx : <funCCom styleProps={background: 'blue'}/>
+const funcCom=(props: funcComStyleProps)=>{return <div classname={props.styleProps}> </div>}
